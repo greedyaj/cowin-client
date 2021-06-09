@@ -1,0 +1,8 @@
+__pycache__/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.DS_STORE
+.vscode

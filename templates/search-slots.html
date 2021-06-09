@@ -1,0 +1,67 @@
+<!doctype html>
+<title>Schedule Vaccine</title>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<script>
+    function filter(filterValue, column) {
+        table = document.getElementById("vaccineSlots");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[column];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filterValue.toUpperCase()) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+</script>
+<br/>
+<form action="search" method="POST">
+    <label for="pin">Pincode</label><br>
+    <input type="text" id="pin" name="pin" value="{{ pin }}" required><br>
+    <br/>
+    <input type="submit" value="Submit">
+</form>
+<br/>
+<button name="18-45" onclick="filter('18', 2)">18-45</button>
+<button name="45+" onclick="filter('45', 2)">45+</button>
+<button name="Covaxin" onclick="filter('Covaxin', 3)">Covaxin</button>
+<button name="Covishield" onclick="filter('Covishield', 3)">Covishield</button>
+<br/><br/>
+{% if slots %}
+    {% if slotsData != None %}
+    <table id="vaccineSlots">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Age Limit</th>
+            <th>Vaccine</th>
+            <th>Availability</th>
+            <th>Time</th>
+        </tr>
+        {% for eachSlot in slotsData %}
+            <tr>
+                <td>{{ eachSlot["centerName"] }}</td>
+                <td>{{ eachSlot["centerAddress"] }}</td>
+                <td>{{ eachSlot["ageLimit"] }}</td>
+                <td>{{ eachSlot["vaccine"] }}</td>
+                <td>{{ "Dose-1: " + eachSlot["dose1"] + ", Dose-2: " + eachSlot["dose2"] }}</td>
+                <td>{{ eachSlot["slot"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% else %}
+
+<h3>No slots found</h3>
+
+{% endif %}

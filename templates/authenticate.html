@@ -1,0 +1,17 @@
+<!doctype html>
+<title>Schedule Vaccine</title>
+{% if !otpSent %}
+<form action="authenticate" method="POST">
+    <label for="mobileNumber">Mobile Number</label><br>
+    <input type="text" id="mobileNumber" name="mobileNumber" required><br>
+    <input type="submit" value="Submit">
+</form>
+{% else %}
+<form action="authenticate" method="POST">
+    <label for="otp">OTP</label><br>
+    <input type="text" id="otp" name="otp" required><br>
+    <input type="text" id="txnId" name="txnId" value="{{ txnId }}" hidden/>
+    <input type="text" id="token" name="token" value="{{ token }}" hidden/>
+    <input type="submit" value="Submit">
+</form>
+{% endif %}
