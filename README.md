@@ -24,3 +24,5 @@ As a developer you will need to perform the following steps:
 ## Running locally
 
 ./run.sh
+
+got to http://localhost:5000/search
