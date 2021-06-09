@@ -25,4 +25,4 @@ As a developer you will need to perform the following steps:
 
 ./run.sh
 
-got to http://localhost:5000/search
+go to http://localhost:5000/search
